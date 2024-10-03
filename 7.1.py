@@ -9,8 +9,7 @@ req = requests.get(url, headers={'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW
 soup = BeautifulSoup(req.content, 'html.parser')  # берем инфу
 dollars = soup.find_all('td') # записываем
 
-course_and_time = [dollar.text for dollar in dollars] # получаем нужное
-course_and_time.pop(0) # убираем лишнее
+course_and_time = [dollar.text for dollar in dollars[:1]]  # получаем нужное
 clear_course = [] # создаем для графика 2 таблицы с значениями из курса
 date = []
 
@@ -20,6 +19,6 @@ for i in range(2,len(course_and_time),3): # получаем чистые зна
 for d in range(0,len(course_and_time),3):
 	date.append(course_and_time[d])
 
-plt.plot(date,clear_kurs,'ro') # создаем график
+plt.plot(date,clear_course,'ro') # создаем график
 plt.title('Курс доллара')
 plt.show()	
