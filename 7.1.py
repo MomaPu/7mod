@@ -9,7 +9,7 @@ req = requests.get(url, headers={'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW
 soup = BeautifulSoup(req.content, 'html.parser')  # берем инфу
 dollars = soup.find_all('td') # записываем
 
-course_and_time = [dollar.text for dollar in dollars[:1]]  # получаем нужное
+course_and_time = [dollar.text for dollar in dollars[1:]]  # получаем нужное
 clear_course = [] # создаем для графика 2 таблицы с значениями из курса
 date = []
 
